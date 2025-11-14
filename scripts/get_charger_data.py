@@ -91,6 +91,7 @@ class EVChargerAPI:
             params["chgerId"] = chger_id
 
         result = self._get("getChargerStatus", params)
+        
         if result:
             return [ChargerStatDto(**item) for item in result]
         return None
