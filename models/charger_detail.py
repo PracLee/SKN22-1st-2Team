@@ -57,3 +57,18 @@ class Charger_detail:
             last_tedt=parse_datetime(stat_dto.lastTedt),
             now_tsdt=parse_datetime(stat_dto.nowTsdt),
         )
+    def as_tuple(self):
+        return(
+                self.charger_id,
+                self.station_id,
+                self.charger_type,
+                self.output_kw,
+                self.method,
+                self.del_yn,
+                self.del_detail,
+                self.stat,
+                self.stat_upd_dt,
+                self.last_tsdt,
+                self.last_tedt,
+                self.now_tsdt
+        )
