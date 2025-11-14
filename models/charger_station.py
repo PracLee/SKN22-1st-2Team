@@ -78,3 +78,31 @@ class Charger_station:
             operator_id=dto.busiId or "",
             update_dt=parse_datetime(dto.statUpdDt),
         )
+
+    def as_tuple(self):
+        return(
+            self.station_id,
+            self.station_name,
+            self.addr,
+            self.addr_detail,
+            self.location,
+            self.lat,
+            self.lng,
+            self.use_time,
+            self.parking_free,
+            self.note,
+            self.limit_yn,
+            self.limit_detail,
+            self.del_yn,
+            self.del_detail,
+            self.kind,
+            self.kind_detail,
+            self.zcode,
+            self.zscode,
+            self.traffic_yn,
+            self.year,
+            self.floor_num,
+            self.floor_type,
+            self.operator_id,
+            self.update_dt
+        )

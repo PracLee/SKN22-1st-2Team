@@ -20,7 +20,7 @@ def save_station(station:Charger_station):
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s
+                %s, %s, %s, %s
             )
             ON DUPLICATE KEY UPDATE
                 use_time     = %s,
@@ -30,7 +30,7 @@ def save_station(station:Charger_station):
                 del_detail   = %s,
                 update_dt    = NOW()
             """
-            params = (*station, station[7], station[10], station[11], station[12], station[13])
+            params = (*station.as_tuple(), station.use_time, station.limit_yn, station.limit_detail, station.del_yn, station.del_detail)
             try:
                 cursor.execute(sql, params)
                 conn.commit()
@@ -46,7 +46,7 @@ def save_charger_detail(charger_detail: Charger_detail):
         with conn.cursor() as cursor:
             sql = """
             insert into 
-                        charger_station 
+                        charger_detail 
             values (
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON DUPLICATE KEY UPDATE
@@ -59,9 +59,20 @@ def save_charger_detail(charger_detail: Charger_detail):
                     stat_upd_dt  = %s,
                     last_tsdt    = %s,
                     last_tedt    = %s,
-                    now_tsdt     = NOW()
+                    now_tsdt     = %s
             """
-            params = (*charger_detail, *charger_detail[2:11])
+            params = (*charger_detail.as_tuple(), 
+                        charger_detail.charger_type,
+                        charger_detail.output_kw,
+                        charger_detail.method,
+                        charger_detail.del_yn,
+                        charger_detail.del_detail,
+                        charger_detail.stat,
+                        charger_detail.stat_upd_dt,
+                        charger_detail.last_tsdt,
+                        charger_detail.last_tedt,
+                        charger_detail.now_tsdt
+                        )
             try:
                 cursor.execute(sql, params)
                 conn.commit()
