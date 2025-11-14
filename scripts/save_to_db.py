@@ -104,7 +104,7 @@ def save_charger_status(charger_status: Charger_status):
                     upd_dt      = NOW()
             """
 
-            params = (*charger_status.as_tuple, 
+            params = (*charger_status.as_tuple(), 
                     charger_status.stat,
                     charger_status.stat_upd_dt,
                     charger_status.last_tsdt,
