@@ -87,7 +87,7 @@ else:
     st.warning("📍 위치 정보를 불러오는 중이거나, 권한이 거부되었습니다.")
 
 # 스케줄 등록
-schedule.every(30).minutes.do(job)
+#schedule.every(30).minutes.do(job)
 
 
 def background_thread():
@@ -106,3 +106,7 @@ st.write("스케줄러가 30분마다 자동 실행 중입니다.")
 if st.button("수동 실행"):
     job()
     st.info("수동으로 job() 실행 완료!")
+
+from data.data_set import get_all_data_to_excel
+if st.button('전체 데이터 다운로드'):
+    get_all_data_to_excel()
